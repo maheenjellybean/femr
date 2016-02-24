@@ -73,6 +73,11 @@
     }
 }
 
+@media (max-width: 400px){
+    #notDispensedWrap label{
+        max-width: 150px;
+    }
+}
 /*typeahead           */
 
 input[style] {
