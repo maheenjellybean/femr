@@ -75,26 +75,12 @@ public interface IMedicationService {
      * @return a PrescriptionItem representing the dispensed prescription and/or errors if they exist.
      */
     ServiceResponse<List<PrescriptionItem>> dispensePrescriptions(Map<Integer, Boolean> prescriptionsToDispense);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Lets user know medication has not been dispensed.
+     * @param prescriptionsToNotDispense A mapping of prescriptions to dispense in the form <prescriptionId, notDispensed>
+     * @return
+     * */
+    ServiceResponse<List<PrescriptionItem>> notDispensePrescriptions(Map<Integer, Boolean> prescriptionsToNotDispense);
     /**
      * Adds a new medication to the system. Does NOT update inventory quantities.
      *

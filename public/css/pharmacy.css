@@ -72,7 +72,11 @@
         max-width: 150px;
     }
 }
-
+@media (max-width: 500px) {
+    #notDispensedWrap label{
+        max-width: 300px;
+    }
+}
 @media (max-width: 400px){
     #notDispensedWrap label{
         max-width: 150px;
@@ -181,7 +185,25 @@ input[style] {
     padding: 10px;
     margin: 5px;
 }
+/*
+#notDispensedWrap {
 
+    width: 100%;
+}
+
+#notDispensedWrap label {
+    font-size: 10px;
+    margin:5px;
+}
+
+#notDispensedWrap input {
+    -ms-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    display:inline;
+}
+*/
 #submitWrap {
     width: 100%;
     float: right;

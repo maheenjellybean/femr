@@ -64,10 +64,17 @@
                                 <span id="prescriber">
                                     Prescriber: @medication.getPrescriberLastName, @medication.getPrescriberFirstName</span>
                             </div>
+
                             @if(medication.getAmount > medication.getMedicationRemaining) {
                                 <div class="medicationRemaining">Current Quantity: @medication.getMedicationRemaining</div>
                                 <div class="lowMedication">Not Enough Medication Remaining to Dispense!</div>
                             }
+                            <div id="notDispensedWrap">
+                                <label for="dispensed">
+                                    Medication Not Dispensed</label>
+                                <input type="checkbox" name="notDispensed" value="notDispensed">
+                            </div>
+
                             <div class="replacement hidden">
                                 <input type="hidden" name="prescriptions[@(x-1)].id" value="@medication.getId" />
                                 <div class="prescriptionRow prescriptionInput">
@@ -81,6 +88,7 @@
                                 ><span class="prescriptionAmount"><input name="prescriptions[@(x-1)].amount" type="number" placeholder="Amount" value="0" class="form-control input-sm"/></span>
                                 </div>
                             </div>
+
                         </li>
                     }
 
@@ -95,11 +103,7 @@
                     The patient was counseled on the risks and side effects of the medications dispensed.</label>
                 <input type="checkbox" name="disclaimer" value="disclaimer">
             </div>
-            <div id="notDispensedWrap">
-                <label for="notDispensed">
-                    Medication not dispensed.</label>
-                <input type="checkbox" name="notDispensed" value="notDispensed">
-            </div>
+
 
             <div id="submitWrap">
                 <button type="submit" id="pharmacySubmitBtn" class="fButton fRedButton fSubmitButton pull-right">

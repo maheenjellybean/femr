@@ -176,12 +176,16 @@ public class PharmaciesController extends Controller {
         PatientItem patientItem = patientItemServiceResponse.getResponseObject();
 
         boolean isCounseled = StringUtils.isNotNullOrWhiteSpace(createViewModelPost.getDisclaimer());
+        boolean notDispensedCheck = StringUtils.isNotNullOrWhiteSpace(createViewModelPost.getDispensedCheck());
 
 
         // Map<newId, oldId>
         Map<Integer, Integer> prescriptionsToReplace = new HashMap<>();
         // Map<id, isCounseled>
         Map<Integer, Boolean> prescriptionsToDispense = new HashMap<>();
+        // Map<id, notDispensed>
+        Map<Integer, Boolean> prescriptionsToNotDispense = new HashMap<>();
+
 
         for(PrescriptionItem script : createViewModelPost.getPrescriptions()) {
             //If getMedicationID is not null then a replacement is being done
@@ -199,7 +203,7 @@ public class PharmaciesController extends Controller {
                 prescriptionsToReplace.put(newPrescriptionItem.getId(), script.getId());
 
             } else {
-
+                prescriptionsToNotDispense.put(script.getId(), notDispensedCheck);
                 prescriptionsToDispense.put(script.getId(), isCounseled);
             }
         }
@@ -209,6 +213,15 @@ public class PharmaciesController extends Controller {
         if (prescriptionsToDispense.size() > 0) {
             ServiceResponse<List<PrescriptionItem>> dispensePrescriptionsServiceResponse = medicationService.dispensePrescriptions(prescriptionsToDispense);
             if (dispensePrescriptionsServiceResponse.hasErrors()){
+
+                return internalServerError();
+            }
+        }
+
+        // prescription has not been dispensed
+        if (prescriptionsToNotDispense.size() > 0) {
+            ServiceResponse<List<PrescriptionItem>> notDispensePrescriptionsServiceResponse = medicationService.dispensePrescriptions(prescriptionsToNotDispense);
+            if (notDispensePrescriptionsServiceResponse.hasErrors()){
 
                 return internalServerError();
             }

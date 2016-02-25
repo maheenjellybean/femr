@@ -26,6 +26,7 @@ public class EditViewModelPost {
     private List<PrescriptionItem> prescriptions;
 
     private String disclaimer;
+    private String notDispensed;
 
     public List<PrescriptionItem> getPrescriptions() {
         return prescriptions;
@@ -43,4 +44,11 @@ public class EditViewModelPost {
         this.disclaimer = disclaimer;
     }
 
+    public String getDispensedCheck() {
+        return notDispensed;
+    }
+
+    public void setDispensedCheck(String notDispensed) {
+        this.notDispensed = notDispensed;
+    }
 }

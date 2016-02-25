@@ -323,6 +323,13 @@ public class MedicationService implements IMedicationService {
         return response;
     }
 
+    public ServiceResponse<List<PrescriptionItem>> notDispensePrescriptions(Map<Integer, Boolean> prescriptionsToNotDispense) {
+        //add more code
+        ServiceResponse<List<PrescriptionItem>> response = new ServiceResponse<>();
+        return response;
+    }
+
+
     /**
      * {@inheritDoc}
      */
